@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kumar Dhamala - Python Django Developer portfolio">
+    <meta name="author" content="Kumar Dhamala">
+    <title>Kumar Dhamala | Python Django Developer</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #ffffff;
+            transition: background-color 0.3s ease;
+        }
+        
+        body.dark {
+            background-color: #111827;
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            padding: 15px 0;
+            position: fixed !important;
+            top: 0 !important;
+            width: 100% !important;
+            z-index: 9999 !important;
+        }
+        
+        body.dark .navbar {
+            background-color: rgba(31, 41, 55, 0.95) !important;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #1f2937 !important;
+        }
+        
+        body.dark .navbar-brand {
+            color: #f9fafb !important;
+        }
+        
+        .navbar-brand span:first-child {
+            color: #2563eb !important;
+        }
+        
+        .nav-link {
+            color: #4b5563 !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 8px 16px !important;
+        }
+        
+        body.dark .nav-link {
+            color: #9ca3af !important;
+        }
+        
+        .nav-link:hover {
+            color: #2563eb !important;
+        }
+        
+        .nav-link.active {
+            color: #2563eb !important;
+            font-weight: 600;
+        }
+        
+        .navbar-toggler {
+            border: 1px solid #d1d5db !important;
+            background: transparent !important;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: none !important;
+            outline: none !important;
+        }
+        
+        #darkModeToggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #d1d5db;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        
+        #darkModeToggle:hover {
+            background-color: #f3f4f6;
+            transform: scale(1.05);
+        }
+        
+        body.dark #darkModeToggle {
+            border-color: #4b5563;
+            color: #f9fafb;
+        }
+        
+        body.dark #darkModeToggle:hover {
+            background-color: #374151;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+        
+        .availability-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #dbeafe;
+            color: #1d4ed8;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        
+        body.dark .availability-badge {
+            background-color: #1e3a8a;
+            color: #93c5fd;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #111827;
+            margin-bottom: 16px;
+        }
+        
+        body.dark .hero-title {
+            color: #f9fafb;
+        }
+        
+        .hero-title span {
+            color: #2563eb;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #4b5563;
+            margin-bottom: 12px;
+        }
+        
+        body.dark .hero-subtitle {
+            color: #9ca3af;
+        }
+        
+        .hero-text {
+            color: #6b7280;
+            max-width: 500px;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        
+        body.dark .hero-text {
+            color: #9ca3af;
+        }
+        
+        /* Buttons */
+        .btn-primary-custom {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            font-weight: 500;
+        }
+        
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+            color: white;
+        }
+        
+        .btn-outline-custom {
+            border: 2px solid #6c757d;
+            background: transparent;
+            color: #6c757d;
+            padding: 10px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .btn-outline-custom:hover {
+            background: #6c757d;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        body.dark .btn-outline-custom {
+            border-color: #9ca3af;
+            color: #9ca3af;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background-color: #f9fafb;
+            padding: 48px 0;
+        }
+        
+        body.dark .stats-section {
+            background-color: #1f2937;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+        
+        .stat-label {
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        
+        body.dark .stat-label {
+            color: #9ca3af;
+        }
+        
+        /* Skills Section */
+        .skills-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            color: #111827;
+            margin-bottom: 12px;
+        }
+        
+        body.dark .section-title {
+            color: #f9fafb;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 48px;
+        }
+        
+        body.dark .section-subtitle {
+            color: #9ca3af;
+        }
+        
+        .title-underline {
+            width: 80px;
+            height: 4px;
+            background-color: #2563eb;
+            margin: 16px auto 40px;
+            border-radius: 2px;
+        }
+        
+        /* Skill Tags */
+        .skills-tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .skill-tag {
+            background: linear-gradient(135deg, #eff6ff, #f3e8ff);
+            color: #1d4ed8;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        
+        body.dark .skill-tag {
+            background: linear-gradient(135deg, #1e3a8a, #4c1d95);
+            color: #93c5fd;
+        }
+        
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+        }
+        
+        .skill-tag i {
+            margin-right: 8px;
+        }
+        
+        /* Project Cards with Images */
+        .project-card {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        body.dark .project-card {
+            background-color: #1f2937;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Project Image Container */
+        .project-image-container {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            padding: 20px;
+            color: white;
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+        
+        body.dark .project-title {
+            color: #f9fafb;
+        }
+        
+        .project-description {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        
+        body.dark .project-description {
+            color: #9ca3af;
+        }
+        
+        .tech-badge {
+            display: inline-block;
+            background-color: #f3f4f6;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            margin-right: 6px;
+            margin-bottom: 8px;
+        }
+        
+        body.dark .tech-badge {
+            background-color: #374151;
+            color: #d1d5db;
+        }
+        
+        .github-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .github-link:hover {
+            gap: 10px;
+            text-decoration: underline;
+        }
+        
+        body.dark .github-link {
+            color: #60a5fa;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .cta-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .cta-text {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+        
+        .btn-white {
+            background-color: white;
+            color: #2563eb;
+            padding: 12px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline-white {
+            border: 2px solid white;
+            color: white;
+            padding: 10px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-white:hover {
+            background-color: white;
+            color: #2563eb;
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #111827;
+            color: #9ca3af;
+            padding: 48px 0;
+            text-align: center;
+        }
+        
+        .footer-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+        
+        /* Back to Top */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        #backToTop.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        #backToTop:hover {
+            background: #1d4ed8;
+            transform: translateY(-3px);
+        }
+        
+        /* Typing animation */
+        #typing-text {
+            height: 48px;
+            font-size: 1.125rem;
+            color: #6b7280;
+        }
+        
+        body.dark #typing-text {
+            color: #9ca3af;
+        }
+        
+        /* Container */
+        .container-custom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Grid */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+        }
+        
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mt-20 { margin-top: 80px; }
+        .mt-10 { margin-top: 40px; }
+        .py-20 { padding-top: 80px; padding-bottom: 80px; }
+        
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2rem; }
+            .section-title { font-size: 1.5rem; }
+            .navbar-collapse { 
+                background-color: white; 
+                padding: 20px; 
+                border-radius: 12px; 
+                margin-top: 10px;
+            }
+            body.dark .navbar-collapse { 
+                background-color: #1f2937; 
+            }
+            .hero-section > div > div {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <span>Kumar</span><span>Dhamala</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
+                <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+                <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+            <button id="darkModeToggle" class="btn ms-3">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container-custom">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+            <div data-aos="fade-right">
+                <div class="availability-badge">
+                    <i class="fas fa-code me-2"></i> Available for opportunities
+                </div>
+                <h1 class="hero-title">
+                    I'm <span>Kumar<br>Dhamala</span>
+                </h1>
+                <p class="hero-subtitle">Python | Django Developer</p>
+                <div id="typing-text"></div>
+                <p class="hero-text">
+                    Passionate Django developer with experience in building web applications, managing backend functionality, 
+                    and creating responsive user-friendly interfaces. Strong understanding of database operations and CRUD features.
+                </p>
+                <div class="flex-center" style="justify-content: flex-start;">
+                    <a href="projects.html" class="btn-primary-custom">View Projects <i class="fas fa-arrow-right ms-2"></i></a>
+                    <a href="assets/Kumar_Dhamala_CV.pdf" class="btn-outline-custom" download><i class="fas fa-download me-2"></i> Download CV</a>
+                </div>
+                <div class="flex-center" style="justify-content: flex-start; margin-top: 32px; gap: 20px;">
+                    <a href="https://github.com/KumarDha34" target="_blank" style="color: #6b7280; font-size: 1.5rem;"><i class="fab fa-github"></i></a>
+                    <a href="mailto:dhamalakumar834@gmail.com" style="color: #6b7280; font-size: 1.5rem;"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="text-center" data-aos="fade-left">
+                <div style="position: relative;">
+                    <div style="position: absolute; inset: 0; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border-radius: 50%; filter: blur(40px); opacity: 0.3;"></div>
+                    <div style="position: relative; width: 280px; height: 280px; margin: 0 auto; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);">
+                        <div style="width: 240px; height: 240px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                            <img src="assets/images/profile.jpg" alt="Kumar Dhamala" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="container-custom">
+        <div class="grid-4 text-center">
+            <div data-aos="zoom-in"><div class="stat-value">4+</div><div class="stat-label">Projects Completed</div></div>
+            <div data-aos="zoom-in" data-aos-delay="100"><div class="stat-value">3+</div><div class="stat-label">Frameworks</div></div>
+            <div data-aos="zoom-in" data-aos-delay="200"><div class="stat-value">2026</div><div class="stat-label">Graduation</div></div>
+            <div data-aos="zoom-in" data-aos-delay="300"><div class="stat-value">3.70</div><div class="stat-label">GPA</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section class="skills-section">
+    <div class="container-custom">
+        <div data-aos="fade-up">
+            <h2 class="section-title">Technical Skills</h2>
+            <p class="section-subtitle">Technologies I work with</p>
+            <div class="title-underline"></div>
+        </div>
+        
+        <div class="skills-tags-container" data-aos="fade-up" data-aos-delay="100">
+            <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
+            <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
+            <span class="skill-tag"><i class="fas fa-database"></i> Django</span>
+            <span class="skill-tag"><i class="fas fa-code"></i> Django REST Framework</span>
+            <span class="skill-tag"><i class="fas fa-database"></i> MySQL</span>
+            <span class="skill-tag"><i class="fas fa-database"></i> PostgreSQL</span>
+            <span class="skill-tag"><i class="fas fa-cloud"></i> AWS (EC2, S3)</span>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects Section with YOUR Images -->
+<section class="py-20" style="background-color: #f9fafb;">
+    <div class="container-custom">
+        <div data-aos="fade-up">
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">Some of my best work</p>
+            <div class="title-underline"></div>
+        </div>
+        <div class="grid-3 mt-20">
+            <!-- Project 1: Online BookStore -->
+            <div class="project-card" data-aos="fade-up">
+                <div class="project-image-container">
+                    <img src="assets/images/bookstore.avif" alt="Online BookStore" class="project-image" loading="lazy">
+                    <div class="project-overlay">
+                        <span class="tech-badge" style="background: rgba(255,255,255,0.2); color: white;">Django</span>
+                        <span class="tech-badge" style="background: rgba(255,255,255,0.2); color: white;">PostgreSQL</span>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Online BookStore</h3>
+                    <p class="project-description">Django-based e-commerce platform with user authentication, shopping cart, wishlist, order management, review & rating system, and ML-based book recommendations using Matrix Factorization. Integrated eSewa payment gateway.</p>
+                    <div>
+                        <span class="tech-badge">Django</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">ML</span>
+                        <span class="tech-badge">eSewa</span>
+                    </div>
+                    <a href="https://github.com/KumarDha34/BookStore" target="_blank" class="github-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Project 2: Task Flow Project -->
+            <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="project-image-container">
+                    <img src="assets/images/task.avif" alt="Task Flow Project" class="project-image" loading="lazy">
+                    <div class="project-overlay">
+                        <span class="tech-badge" style="background: rgba(255,255,255,0.2); color: white;">Django</span>
+                        <span class="tech-badge" style="background: rgba(255,255,255,0.2); color: white;">SQLite</span>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Task Flow Project</h3>
+                    <p class="project-description">Django task management application with user accounts, task creation, editing, deletion, and report generation. Clean and intuitive interface for productivity tracking.</p>
+                    <div>
+                        <span class="tech-badge">Django</span>
+                        <span class="tech-badge">SQLite</span>
+                        <span class="tech-badge">Reports</span>
+                    </div>
+                    <a href="https://github.com/KumarDha34/Task-Flow-Project" target="_blank" class="github-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Project 3: AI Chatbot -->
+            <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="project-image-container">
+                    <img src="assets/images/chatbot.avif" alt="AI Chatbot" class="project-image" loading="lazy">
+                    <div class="project-overlay">
+                        <span class="tech-badge" style="background: rgba(255,255,255,0.2); color: white;">FastAPI</span>
+                        <span class="tech-badge" style="background: rgba(255,255,255,0.2); color: white;">PostgreSQL</span>
+                        <span class="tech-badge" style="background: rgba(255,255,255,0.2); color: white;">Gemini AI</span>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">AI Chatbot</h3>
+                    <p class="project-description">Production-ready AI chatbot built with FastAPI, PostgreSQL, and Google Gemini AI. Features JWT authentication, chat history storage, conversation management, and context-aware responses.</p>
+                    <div>
+                        <span class="tech-badge">FastAPI</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">Gemini AI</span>
+                        <span class="tech-badge">JWT</span>
+                    </div>
+                    <a href="https://github.com/KumarDha34/ai-chatbot" target="_blank" class="github-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-20">
+            <a href="projects.html" class="btn-outline-custom">View All Projects <i class="fas fa-arrow-right ms-2"></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container-custom">
+        <h2 class="cta-title" data-aos="zoom-in">Let's Work Together</h2>
+        <p class="cta-text" data-aos="zoom-in" data-aos-delay="100">
+            I'm looking for opportunities to apply my Django skills and grow through real project experience.
+        </p>
+        <div class="flex-center" data-aos="zoom-in" data-aos-delay="200">
+            <a href="contact.html" class="btn-white">Get In Touch</a>
+            <a href="assets/Kumar_Dhamala_CV.pdf" class="btn-outline-white" download>Download CV</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container-custom">
+        <h3 class="footer-name">Kumar Dhamala</h3>
+        <p>Python | Django Developer</p>
+        <div class="flex-center" style="margin: 20px 0;">
+            <a href="https://github.com/KumarDha34" target="_blank" style="color: #9ca3af; font-size: 1.25rem;"><i class="fab fa-github"></i></a>
+            <a href="mailto:dhamalakumar834@gmail.com" style="color: #9ca3af; font-size: 1.25rem;"><i class="fas fa-envelope"></i></a>
+        </div>
+        <div style="border-top: 1px solid #1f2937; padding-top: 24px;">
+            <p>&copy; 2024 Kumar Dhamala. Built with HTML, CSS, Bootstrap</p>
+        </div>
+    </div>
+</footer>
+
+<button id="backToTop"><i class="fas fa-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ once: true, duration: 800 });
+    
+    // Dark Mode
+    const toggle = document.getElementById('darkModeToggle');
+    if (toggle) {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark') {
+            document.body.classList.add('dark');
+            toggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        
+        toggle.addEventListener('click', () => {
+            if (document.body.classList.contains('dark')) {
+                document.body.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                toggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                document.body.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                toggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+    }
+    
+    // Typing Animation
+    function startTyping() {
+        const element = document.getElementById('typing-text');
+        if (!element) return;
+        
+        const phrases = ['Django Developer', 'Backend Engineer', 'Problem Solver', 'Open to Work'];
+        let i = 0, j = 0, isDeleting = false;
+        
+        function type() {
+            const current = phrases[i];
+            element.textContent = isDeleting ? current.substring(0, j - 1) : current.substring(0, j + 1);
+            isDeleting ? j-- : j++;
+            
+            if (!isDeleting && j === current.length) {
+                isDeleting = true;
+                setTimeout(type, 2000);
+                return;
+            }
+            if (isDeleting && j === 0) {
+                isDeleting = false;
+                i = (i + 1) % phrases.length;
+            }
+            setTimeout(type, isDeleting ? 50 : 100);
+        }
+        type();
+    }
+    
+    // Back to Top
+    const backBtn = document.getElementById('backToTop');
+    if (backBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backBtn.classList.add('visible');
+            } else {
+                backBtn.classList.remove('visible');
+            }
+        });
+        
+        backBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+    
+    // Active Nav Link
+    function setActiveNavLink() {
+        const current = window.location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('.nav-link').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href === current) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    }
+    
+    startTyping();
+    setActiveNavLink();
+</script>
+</body>
+</html>

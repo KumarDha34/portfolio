@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume | Kumar Dhamala</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            transition: background-color 0.3s ease;
+        }
+        
+        body.dark {
+            background-color: #111827;
+        }
+        
+        /* ========== NAVBAR FIX ========== */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            padding: 15px 0;
+            position: fixed !important;
+            top: 0 !important;
+            width: 100% !important;
+            z-index: 9999 !important;
+        }
+        
+        body.dark .navbar {
+            background-color: rgba(31, 41, 55, 0.95) !important;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #1f2937 !important;
+        }
+        
+        body.dark .navbar-brand {
+            color: #f9fafb !important;
+        }
+        
+        .navbar-brand span:first-child {
+            color: #2563eb !important;
+        }
+        
+        .nav-link {
+            color: #4b5563 !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 8px 16px !important;
+        }
+        
+        body.dark .nav-link {
+            color: #9ca3af !important;
+        }
+        
+        .nav-link:hover {
+            color: #2563eb !important;
+        }
+        
+        .nav-link.active {
+            color: #2563eb !important;
+            font-weight: 600;
+        }
+        
+        .navbar-toggler {
+            border: 1px solid #d1d5db !important;
+            background: transparent !important;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: none !important;
+            outline: none !important;
+        }
+        
+        /* Dark mode toggle button */
+        #darkModeToggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #d1d5db;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        
+        #darkModeToggle:hover {
+            background-color: #f3f4f6;
+            transform: scale(1.05);
+        }
+        
+        body.dark #darkModeToggle {
+            border-color: #4b5563;
+            color: #f9fafb;
+        }
+        
+        body.dark #darkModeToggle:hover {
+            background-color: #374151;
+        }
+        
+        /* Container */
+        .container-custom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Resume Header */
+        .resume-header {
+            padding-top: 100px;
+            padding-bottom: 40px;
+        }
+        
+        /* Buttons */
+        .btn-light {
+            background-color: white;
+            color: #2563eb;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-light:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline-light {
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-light:hover {
+            background-color: white;
+            color: #2563eb;
+            transform: translateY(-2px);
+        }
+        
+        /* Resume Card */
+        .resume-card {
+            background-color: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        body.dark .resume-card {
+            background-color: #1f2937;
+        }
+        
+        .resume-card-header {
+            background: linear-gradient(135deg, #2563eb, #7c3aed, #db2777);
+            padding: 48px 32px;
+            text-align: center;
+            color: white;
+        }
+        
+        .resume-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .resume-title {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 16px;
+        }
+        
+        .resume-contact {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            font-size: 0.875rem;
+            margin-bottom: 24px;
+        }
+        
+        .resume-contact span i {
+            margin-right: 8px;
+        }
+        
+        .resume-card-body {
+            padding: 40px;
+        }
+        
+        /* Section Styles */
+        .resume-section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+            border-left: 4px solid #2563eb;
+            padding-left: 16px;
+            margin-bottom: 20px;
+        }
+        
+        body.dark .resume-section-title {
+            color: #f9fafb;
+        }
+        
+        .resume-text {
+            color: #4b5563;
+            line-height: 1.6;
+        }
+        
+        body.dark .resume-text {
+            color: #9ca3af;
+        }
+        
+        .skill-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .skill-badge-blue {
+            background-color: #dbeafe;
+            color: #1d4ed8;
+        }
+        
+        body.dark .skill-badge-blue {
+            background-color: #1e3a8a;
+            color: #93c5fd;
+        }
+        
+        .skill-badge-purple {
+            background-color: #f3e8ff;
+            color: #7c3aed;
+        }
+        
+        body.dark .skill-badge-purple {
+            background-color: #4c1d95;
+            color: #c4b5fd;
+        }
+        
+        .skill-badge-green {
+            background-color: #d1fae5;
+            color: #059669;
+        }
+        
+        body.dark .skill-badge-green {
+            background-color: #064e3b;
+            color: #6ee7b7;
+        }
+        
+        .skill-badge-orange {
+            background-color: #ffedd5;
+            color: #ea580c;
+        }
+        
+        body.dark .skill-badge-orange {
+            background-color: #7c2d12;
+            color: #fdba74;
+        }
+        
+        .education-card, .cert-card, .project-card-resume {
+            background-color: #f9fafb;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        body.dark .education-card,
+        body.dark .cert-card,
+        body.dark .project-card-resume {
+            background-color: #374151;
+        }
+        
+        .education-card:hover,
+        .cert-card:hover,
+        .project-card-resume:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .education-title {
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+        
+        body.dark .education-title {
+            color: #f9fafb;
+        }
+        
+        .education-date {
+            font-size: 0.75rem;
+            color: #2563eb;
+            font-weight: 600;
+        }
+        
+        .gpa-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #d1fae5;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #059669;
+            margin-top: 8px;
+        }
+        
+        body.dark .gpa-badge {
+            background-color: #064e3b;
+            color: #6ee7b7;
+        }
+        
+        /* Grid */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #111827;
+            color: #9ca3af;
+            padding: 48px 0;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .resume-name {
+                font-size: 1.75rem;
+            }
+            .resume-card-body {
+                padding: 24px;
+            }
+            .navbar-collapse {
+                background-color: white;
+                padding: 20px;
+                border-radius: 12px;
+                margin-top: 10px;
+            }
+            body.dark .navbar-collapse {
+                background-color: #1f2937;
+            }
+            .nav-link {
+                padding: 10px 0 !important;
+            }
+            .resume-contact {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            .navbar, .btn, #darkModeToggle, footer {
+                display: none !important;
+            }
+            body {
+                background: white;
+                color: black;
+            }
+            .resume-card {
+                box-shadow: none;
+            }
+            .resume-card-header {
+                background: #2563eb;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        body.dark ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        
+        body.dark ::-webkit-scrollbar-thumb {
+            background: #4b5563;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <span>KD</span><span>hamala</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+                <li class="nav-item"><a class="nav-link active" href="resume.html">Resume</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+            <button id="darkModeToggle" class="btn ms-3">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Resume Section -->
+<section class="resume-header">
+    <div class="container-custom">
+        <div class="resume-card" data-aos="fade-up">
+            <div class="resume-card-header">
+                <h1 class="resume-name">Kumar Dhamala</h1>
+                <p class="resume-title">Python | Django | FastAPI Developer</p>
+                <div class="resume-contact">
+                    <span><i class="fas fa-envelope"></i> dhamalakumar834@gmail.com</span>
+                    <span><i class="fas fa-phone"></i> 9765299096</span>
+                    <span><i class="fab fa-github"></i> github.com/KumarDha34</span>
+                </div>
+                <div>
+                    <a href="assets/Kumar_Dhamala_CV.pdf" class="btn btn-light px-4 py-2 rounded-lg" download>
+                        <i class="fas fa-download me-2"></i> Download PDF
+                    </a>
+                    <button onclick="window.print()" class="btn btn-outline-light px-4 py-2 rounded-lg ms-2">
+                        <i class="fas fa-print me-2"></i> Print
+                    </button>
+                </div>
+            </div>
+            <div class="resume-card-body">
+                <!-- Professional Summary -->
+                <div data-aos="fade-right">
+                    <h2 class="resume-section-title">Professional Summary</h2>
+                    <p class="resume-text">Passionate Python and Django developer with experience in building web applications and managing backend functionality. Strong understanding of database operations, CRUD features, and creating responsive user-friendly interfaces. Looking for an opportunity to apply my skills and grow through real project experience.</p>
+                </div>
+                
+                <div class="grid-2 mt-5">
+                    <!-- Left Column -->
+                    <div>
+                        <!-- Technical Skills -->
+                        <div data-aos="fade-right">
+                            <h2 class="resume-section-title">Technical Skills</h2>
+                            <div>
+                                <span class="skill-badge skill-badge-blue">Python</span>
+                                <span class="skill-badge skill-badge-blue">JavaScript</span>
+                                <span class="skill-badge skill-badge-purple">Django</span>
+                                <span class="skill-badge skill-badge-purple">FastAPI</span>
+                                <span class="skill-badge skill-badge-green">PostgreSQL</span>
+                                <span class="skill-badge skill-badge-green">MySQL</span>
+                                <span class="skill-badge skill-badge-orange">AWS (EC2, S3)</span>
+                                <span class="skill-badge skill-badge-purple">Django REST Framework</span>
+                                <span class="skill-badge skill-badge-blue">HTML/CSS</span>
+                                <span class="skill-badge skill-badge-purple">Bootstrap</span>
+                                <span class="skill-badge skill-badge-green">Git</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Education -->
+                        <div class="mt-5" data-aos="fade-right" data-aos-delay="100">
+                            <h2 class="resume-section-title">Education</h2>
+                            <div class="education-card">
+                                <div class="d-flex justify-content-between flex-wrap">
+                                    <h3 class="education-title">Bachelor's Degree in Computer Science</h3>
+                                    <span class="education-date">2022 - 2026</span>
+                                </div>
+                                <p class="resume-text mb-2">Tribhuvan University, Kathmandu, Nepal</p>
+                                <div class="gpa-badge">
+                                    <i class="fas fa-star text-yellow-500"></i>
+                                    <span>GPA: 3.70/4.0</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Certifications -->
+                        <div class="mt-5" data-aos="fade-right" data-aos-delay="200">
+                            <h2 class="resume-section-title">Certifications</h2>
+                            <div class="cert-card">
+                                <div class="d-flex align-items-center gap-3">
+                                    <i class="fab fa-python text-3xl text-blue-600"></i>
+                                    <div>
+                                        <h3 class="education-title">Claude Code in Action</h3>
+                                        <p class="resume-text" style="font-size: 0.875rem;">Anthropic • 2024</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column -->
+                    <div>
+                        <!-- Key Projects -->
+                        <div data-aos="fade-left">
+                            <h2 class="resume-section-title">Key Projects</h2>
+                            
+                            <div class="project-card-resume">
+                                <h3 class="education-title">Online BookStore</h3>
+                                <p class="resume-text" style="font-size: 0.875rem;">Django e-commerce with cart, wishlist, reviews, and ML-based recommendations using Matrix Factorization. Integrated eSewa payment gateway.</p>
+                                <div class="mt-2">
+                                    <span class="skill-badge skill-badge-purple" style="font-size: 0.7rem;">Django</span>
+                                    <span class="skill-badge skill-badge-green" style="font-size: 0.7rem;">PostgreSQL</span>
+                                    <span class="skill-badge skill-badge-blue" style="font-size: 0.7rem;">ML</span>
+                                </div>
+                            </div>
+                            
+                            <div class="project-card-resume">
+                                <h3 class="education-title">Task Flow Project</h3>
+                                <p class="resume-text" style="font-size: 0.875rem;">Django task management with user accounts, task CRUD, status tracking, and report generation.</p>
+                                <div class="mt-2">
+                                    <span class="skill-badge skill-badge-purple" style="font-size: 0.7rem;">Django</span>
+                                    <span class="skill-badge skill-badge-green" style="font-size: 0.7rem;">SQLite</span>
+                                </div>
+                            </div>
+                            
+                            <div class="project-card-resume">
+                                <h3 class="education-title">AI Chatbot</h3>
+                                <p class="resume-text" style="font-size: 0.875rem;">Production-ready AI chatbot with FastAPI, PostgreSQL, Google Gemini AI, JWT authentication, and chat history.</p>
+                                <div class="mt-2">
+                                    <span class="skill-badge skill-badge-purple" style="font-size: 0.7rem;">FastAPI</span>
+                                    <span class="skill-badge skill-badge-green" style="font-size: 0.7rem;">PostgreSQL</span>
+                                    <span class="skill-badge skill-badge-blue" style="font-size: 0.7rem;">Gemini AI</span>
+                                </div>
+                            </div>
+                            
+                            <div class="project-card-resume">
+                                <h3 class="education-title">Recipe System Django</h3>
+                                <p class="resume-text" style="font-size: 0.875rem;">Recipe management with CRUD operations, search, category filtering, and responsive UI.</p>
+                                <div class="mt-2">
+                                    <span class="skill-badge skill-badge-purple" style="font-size: 0.7rem;">Django</span>
+                                    <span class="skill-badge skill-badge-green" style="font-size: 0.7rem;">SQLite</span>
+                                    <span class="skill-badge skill-badge-purple" style="font-size: 0.7rem;">Bootstrap</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <h3 style="color: white; font-size: 1.5rem; margin-bottom: 8px;">Kumar Dhamala</h3>
+        <p style="margin-bottom: 20px;">Python | Django | FastAPI Developer</p>
+        <div class="d-flex justify-content-center gap-4 mb-4">
+            <a href="https://github.com/KumarDha34" target="_blank" style="color: #9ca3af; font-size: 1.25rem;"><i class="fab fa-github"></i></a>
+            <a href="mailto:dhamalakumar834@gmail.com" style="color: #9ca3af; font-size: 1.25rem;"><i class="fas fa-envelope"></i></a>
+        </div>
+        <div style="border-top: 1px solid #1f2937; padding-top: 24px;">
+            <p style="font-size: 0.875rem;">&copy; 2024 Kumar Dhamala. Built with HTML, CSS, Bootstrap</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ once: true, duration: 800 });
+    
+    // Dark Mode
+    const toggle = document.getElementById('darkModeToggle');
+    if (toggle) {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark') {
+            document.body.classList.add('dark');
+            toggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        
+        toggle.addEventListener('click', () => {
+            if (document.body.classList.contains('dark')) {
+                document.body.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                toggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                document.body.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                toggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+    }
+    
+    // Active Nav Link
+    function setActiveNavLink() {
+        const current = window.location.pathname.split('/').pop() || 'resume.html';
+        document.querySelectorAll('.nav-link').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href === current) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    }
+    setActiveNavLink();
+</script>
+</body>
+</html>

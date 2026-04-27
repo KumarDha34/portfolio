@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Kumar Dhamala</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            transition: background-color 0.3s ease;
+        }
+        
+        body.dark {
+            background-color: #111827;
+        }
+        
+        /* ========== NAVBAR FIX ========== */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            padding: 15px 0;
+            position: fixed !important;
+            top: 0 !important;
+            width: 100% !important;
+            z-index: 9999 !important;
+        }
+        
+        body.dark .navbar {
+            background-color: rgba(31, 41, 55, 0.95) !important;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #1f2937 !important;
+        }
+        
+        body.dark .navbar-brand {
+            color: #f9fafb !important;
+        }
+        
+        .navbar-brand span:first-child {
+            color: #2563eb !important;
+        }
+        
+        .nav-link {
+            color: #4b5563 !important;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 8px 16px !important;
+        }
+        
+        body.dark .nav-link {
+            color: #9ca3af !important;
+        }
+        
+        .nav-link:hover {
+            color: #2563eb !important;
+        }
+        
+        .nav-link.active {
+            color: #2563eb !important;
+            font-weight: 600;
+        }
+        
+        .navbar-toggler {
+            border: 1px solid #d1d5db !important;
+            background: transparent !important;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: none !important;
+            outline: none !important;
+        }
+        
+        /* Dark mode toggle button */
+        #darkModeToggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #d1d5db;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        
+        #darkModeToggle:hover {
+            background-color: #f3f4f6;
+            transform: scale(1.05);
+        }
+        
+        body.dark #darkModeToggle {
+            border-color: #4b5563;
+            color: #f9fafb;
+        }
+        
+        body.dark #darkModeToggle:hover {
+            background-color: #374151;
+        }
+        
+        /* Container */
+        .container-custom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Page Header */
+        .page-header {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            text-align: center;
+        }
+        
+        .page-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #111827;
+            margin-bottom: 16px;
+        }
+        
+        body.dark .page-title {
+            color: #f9fafb;
+        }
+        
+        .page-subtitle {
+            color: #6b7280;
+            font-size: 1.125rem;
+        }
+        
+        body.dark .page-subtitle {
+            color: #9ca3af;
+        }
+        
+        .title-underline {
+            width: 80px;
+            height: 4px;
+            background-color: #2563eb;
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+        
+        /* Contact Cards */
+        .contact-card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        body.dark .contact-card {
+            background-color: #1f2937;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-icon {
+            width: 64px;
+            height: 64px;
+            background-color: #dbeafe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+        
+        body.dark .contact-icon {
+            background-color: #1e3a8a;
+        }
+        
+        .contact-icon i {
+            font-size: 1.75rem;
+            color: #2563eb;
+        }
+        
+        .contact-card h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+        
+        body.dark .contact-card h3 {
+            color: #f9fafb;
+        }
+        
+        .contact-card p, .contact-card a {
+            color: #6b7280;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        body.dark .contact-card p, body.dark .contact-card a {
+            color: #9ca3af;
+        }
+        
+        .contact-card a:hover {
+            color: #2563eb;
+        }
+        
+        /* Contact Form */
+        .form-container {
+            background-color: white;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+        
+        body.dark .form-container {
+            background-color: #1f2937;
+        }
+        
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 24px;
+        }
+        
+        body.dark .form-title {
+            color: #f9fafb;
+        }
+        
+        .form-label {
+            display: block;
+            color: #4b5563;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        body.dark .form-label {
+            color: #9ca3af;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+        
+        body.dark .form-control {
+            background-color: #374151;
+            border-color: #4b5563;
+            color: #f9fafb;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .btn-send {
+            width: 100%;
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-send:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+        }
+        
+        /* Map Container */
+        .map-container {
+            background-color: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-top: 48px;
+        }
+        
+        body.dark .map-container {
+            background-color: #1f2937;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            display: block;
+        }
+        
+        /* Grid */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #111827;
+            color: #9ca3af;
+            padding: 48px 0;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            .grid-3, .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .navbar-collapse {
+                background-color: white;
+                padding: 20px;
+                border-radius: 12px;
+                margin-top: 10px;
+            }
+            body.dark .navbar-collapse {
+                background-color: #1f2937;
+            }
+            .nav-link {
+                padding: 10px 0 !important;
+            }
+            .form-container {
+                margin-top: 0;
+            }
+        }
+        
+        /* Alert Styles */
+        .alert-success {
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 16px;
+            text-align: center;
+        }
+        
+        .alert-danger {
+            background-color: #fee2e2;
+            color: #991b1b;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 16px;
+            text-align: center;
+        }
+        
+        body.dark .alert-success {
+            background-color: #064e3b;
+            color: #6ee7b7;
+        }
+        
+        body.dark .alert-danger {
+            background-color: #7f1d1d;
+            color: #fca5a5;
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        body.dark ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        
+        body.dark ::-webkit-scrollbar-thumb {
+            background: #4b5563;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <span>KD</span><span>hamala</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+                <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
+                <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+            </ul>
+            <button id="darkModeToggle" class="btn ms-3">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title" data-aos="fade-up">Get In Touch</h1>
+        <p class="page-subtitle" data-aos="fade-up" data-aos-delay="100">Have a project in mind? Let's work together.</p>
+        <div class="title-underline" data-aos="fade-up" data-aos-delay="200"></div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section style="padding: 40px 0 60px;">
+    <div class="container">
+        <div class="grid-3" style="margin-bottom: 48px;">
+            <!-- Contact Card 1 - Email -->
+            <div class="contact-card" data-aos="fade-up">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email</h3>
+                <a href="mailto:dhamalakumar834@gmail.com">dhamalakumar834@gmail.com</a>
+            </div>
+            
+            <!-- Contact Card 2 - Phone -->
+            <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>Phone</h3>
+                <p>+977 9765299096</p>
+            </div>
+            
+            <!-- Contact Card 3 - GitHub -->
+            <div class="contact-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="contact-icon">
+                    <i class="fab fa-github"></i>
+                </div>
+                <h3>GitHub</h3>
+                <a href="https://github.com/KumarDha34" target="_blank">github.com/KumarDha34</a>
+            </div>
+        </div>
+        
+        <div class="grid-2">
+            <!-- Contact Info Additional -->
+            <div class="contact-card" data-aos="fade-right">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>Location</h3>
+                <p>Kathmandu, Nepal</p>
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+                    <h3 style="font-size: 1rem; margin-bottom: 12px;">Available for</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
+                        <span style="background-color: #dbeafe; color: #1d4ed8; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem;">Full-time</span>
+                        <span style="background-color: #dbeafe; color: #1d4ed8; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem;">Remote</span>
+                        <span style="background-color: #dbeafe; color: #1d4ed8; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem;">Freelance</span>
+                        <span style="background-color: #dbeafe; color: #1d4ed8; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem;">Internship</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="form-container" data-aos="fade-left">
+                <h2 class="form-title">Send a Message</h2>
+                
+                <form id="contactForm" action="https://formspree.io/f/xgvorgdp" method="POST">
+                    <div class="grid-2" style="margin-bottom: 16px;">
+                        <div>
+                            <label class="form-label">Your Name <span style="color: #ef4444;">*</span></label>
+                            <input type="text" name="name" required class="form-control">
+                        </div>
+                        <div>
+                            <label class="form-label">Email Address <span style="color: #ef4444;">*</span></label>
+                            <input type="email" name="email" required class="form-control">
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <label class="form-label">Subject</label>
+                        <input type="text" name="subject" class="form-control">
+                    </div>
+                    <div style="margin-bottom: 24px;">
+                        <label class="form-label">Message <span style="color: #ef4444;">*</span></label>
+                        <textarea name="message" rows="5" required class="form-control"></textarea>
+                    </div>
+                    <button type="submit" class="btn-send">
+                        Send Message <i class="fas fa-paper-plane ms-2"></i>
+                    </button>
+                    <div id="formStatus" style="margin-top: 16px;"></div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Map -->
+        <div class="map-container" data-aos="fade-up" data-aos-delay="100">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56516.31663441629!2d85.2919161!3d27.7089427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198a307ba74f%3A0xb5137c1bf3db4b0a!2sKathmandu%2044600!5e0!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <h3 style="color: white; font-size: 1.5rem; margin-bottom: 8px;">Kumar Dhamala</h3>
+        <p style="margin-bottom: 20px;">Python | Django | FastAPI Developer</p>
+        <div class="d-flex justify-content-center gap-4 mb-4">
+            <a href="https://github.com/KumarDha34" target="_blank" style="color: #9ca3af; font-size: 1.25rem;"><i class="fab fa-github"></i></a>
+            <a href="mailto:dhamalakumar834@gmail.com" style="color: #9ca3af; font-size: 1.25rem;"><i class="fas fa-envelope"></i></a>
+        </div>
+        <div style="border-top: 1px solid #1f2937; padding-top: 24px;">
+            <p style="font-size: 0.875rem;">&copy; 2024 Kumar Dhamala. Built with HTML, CSS, Bootstrap</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ once: true, duration: 800 });
+    
+    // Dark Mode
+    const toggle = document.getElementById('darkModeToggle');
+    if (toggle) {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark') {
+            document.body.classList.add('dark');
+            toggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        
+        toggle.addEventListener('click', () => {
+            if (document.body.classList.contains('dark')) {
+                document.body.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                toggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                document.body.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                toggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+    }
+    
+    // Active Nav Link
+    function setActiveNavLink() {
+        const current = window.location.pathname.split('/').pop() || 'contact.html';
+        document.querySelectorAll('.nav-link').forEach(link => {
+            const href = link.getAttribute('href');
+            if (href === current) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    }
+    setActiveNavLink();
+    
+    // Contact Form Submission
+    const form = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    
+    if (form) {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+            formStatus.innerHTML = '';
+            
+            const formData = new FormData(form);
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+                
+                if (response.ok) {
+                    formStatus.innerHTML = '<div class="alert-success" style="padding: 12px; border-radius: 8px;"><i class="fas fa-check-circle me-2"></i>Thank you! Your message has been sent successfully.</div>';
+                    form.reset();
+                    setTimeout(() => {
+                        formStatus.innerHTML = '';
+                    }, 5000);
+                } else {
+                    formStatus.innerHTML = '<div class="alert-danger" style="padding: 12px; border-radius: 8px;"><i class="fas fa-exclamation-circle me-2"></i>Sorry, there was an error. Please try again.</div>';
+                }
+            } catch (error) {
+                formStatus.innerHTML = '<div class="alert-danger" style="padding: 12px; border-radius: 8px;"><i class="fas fa-exclamation-circle me-2"></i>Network error. Please check your connection.</div>';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
+        });
+    }
+</script>
+</body>
+</html>
